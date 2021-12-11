@@ -1,4 +1,11 @@
-import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  OnModuleInit,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
@@ -18,7 +25,12 @@ export class HelloController implements OnModuleInit {
   }
 
   @Get()
-  greet(): Observable<HelloResult> {
-    return this.helloService.greet({ name: 'dude' });
+  greet(@Query('name') name: string): Observable<HelloResult> {
+    return this.helloService.greet({ name });
+  }
+
+  @Get(':name')
+  create(@Param('name') name: string): Observable<HelloResult> {
+    return this.helloService.create({ name });
   }
 }

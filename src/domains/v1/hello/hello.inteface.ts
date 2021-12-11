@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-export interface HelloByName {
+export interface Hello {
   name: string;
 }
 
@@ -9,5 +9,6 @@ export interface HelloResult {
 }
 
 export interface HelloService {
-  greet(data: HelloByName): Observable<HelloResult>;
+  greet(data: Hello): Observable<HelloResult>;
+  create(data: Hello): Observable<HelloResult>;
 }
