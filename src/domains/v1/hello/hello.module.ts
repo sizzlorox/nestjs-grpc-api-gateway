@@ -5,6 +5,7 @@ import { HelloController } from './hello.controller';
 
 @Module({
   imports: [
+    // HELLO SERVICE
     ClientsModule.register([
       {
         name: 'HELLO_PACKAGE',

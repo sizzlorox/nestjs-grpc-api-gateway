@@ -18,10 +18,10 @@ import { HelloResult, HelloService } from './hello.inteface';
 export class HelloController implements OnModuleInit {
   private helloService: HelloService;
 
-  constructor(@Inject('HELLO_PACKAGE') private client: ClientGrpc) {}
+  constructor(@Inject('HELLO_PACKAGE') private readonly grpc: ClientGrpc) {}
 
-  onModuleInit() {
-    this.helloService = this.client.getService<HelloService>('HelloService');
+  async onModuleInit() {
+    this.helloService = this.grpc.getService<HelloService>('HelloService');
   }
 
   @Get()
@@ -30,7 +30,7 @@ export class HelloController implements OnModuleInit {
   }
 
   @Get(':name')
-  create(@Param('name') name: string): Observable<HelloResult> {
+  create(@Param('name') name: string): Observable<void> {
     return this.helloService.create({ name });
   }
 }

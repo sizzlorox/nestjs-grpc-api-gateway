@@ -10,5 +10,5 @@ export interface HelloResult {
 
 export interface HelloService {
   greet(data: Hello): Observable<HelloResult>;
-  create(data: Hello): Observable<HelloResult>;
+  create(data: Hello): Observable<void>;
 }
